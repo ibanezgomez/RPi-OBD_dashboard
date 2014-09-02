@@ -1,0 +1,51 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# vim :set tabstop=4 expandtab shiftwidth=4 softtabstop=4
+
+import logging
+import time
+
+from render import *
+from gpio.switch import *
+
+
+# name:  skin name
+# font:  font name
+# fontC: font color
+# backC: background color
+skins = [
+       {'name': 'oemDay',   'font': 'fonts/digital7.ttf', 'fontC': (36,44,43), 'backC': (165,186,145)},
+       {'name': 'oemNight', 'font': 'fonts/digital7.ttf', 'fontC': (36,44,43), 'backC': (28,70,156)}
+]
+
+def updateOpt(nOpt):
+    if opt >= 0 and opt <= nOpt: return opt+1
+    else: return 0
+
+# Pygame render
+render=render_pygame(skins[0])
+opt=1
+
+#GPIO switch
+switch = switch()
+show_logo = True
+        
+while True:
+    h=int(time.strftime("%H"))
+    if h>19 or h<7: render.changeSkin(skins[1]) 
+    else: render.changeSkin(skins[0]) 
+ 	
+    if show_logo: 
+        render.drawLogo()
+        time.sleep(4)
+        show_logo=False
+
+    print("Soy el modo: "+str(opt))
+    change = False
+    while(change==False):
+        render.options[opt]()
+        if switch.read(0)==1: change=True
+        time.sleep(0.3)
+    opt=updateOpt(len(render.options)-2)
+    print("Salgo del antiguo modo ahora soy: "+str(opt))
+
