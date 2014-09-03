@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 # vim :set tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
-import logging
 import time
 
 from render import *
 from gpio.switch import *
+from utils.logger import log
 
 
 # name:  skin name
@@ -19,16 +19,17 @@ skins = [
 ]
 
 def updateOpt(nOpt):
-    if opt >= 0 and opt <= nOpt: return opt+1
+    if current_option >= 0 and current_option <= nOpt: return current_option+1
     else: return 0
+
+current_option = 1
+show_logo      = True
 
 # Pygame render
 render=render_pygame(skins[0])
-opt=1
 
 #GPIO switch
 switch = switch()
-show_logo = True
         
 while True:
     h=int(time.strftime("%H"))
@@ -40,12 +41,12 @@ while True:
         time.sleep(4)
         show_logo=False
 
-    print("Soy el modo: "+str(opt))
+    log.debug("Soy el modo: "+str(current_option))
     change = False
     while(change==False):
-        render.options[opt]()
+        render.options[current_option]()
         if switch.read(0)==1: change=True
         time.sleep(0.3)
-    opt=updateOpt(len(render.options)-2)
-    print("Salgo del antiguo modo ahora soy: "+str(opt))
+    current_option=updateOpt(len(render.options)-2)
+    log.debug("Salgo del antiguo modo ahora soy: "+str(current_option))
 

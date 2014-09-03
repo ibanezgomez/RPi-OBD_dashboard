@@ -10,6 +10,7 @@ import pygame
 from pygame.locals import *
 
 from obd.capture import *
+from utils.logger import log
 
 class render_pygame:
 
@@ -29,14 +30,14 @@ class render_pygame:
         self.obd = OBD_Capture()
         self.obd.connect()
         if self.obd.is_connected():
-            print "OBD serial interface connected"
+            log.debug("OBD serial interface connected")
         else:
-            print "OBD serial interface not found"
+            log.debug("OBD serial interface not found")
 
         disp_no = os.getenv("DISPLAY")
 
         if disp_no:
-            print "I'm running under X display = {0}".format(disp_no)
+            log.debug("I'm running under X display = {0}".format(disp_no))
         drivers = ['fbcon', 'directfb', 'svgalib']
         found = False
         for driver in drivers:
@@ -45,7 +46,7 @@ class render_pygame:
             try:
                 pygame.display.init()
             except pygame.error:
-                print 'Driver: {0} failed.'.format(driver)
+                log.error('Driver: {0} failed.'.format(driver))
                 continue
             found = True
             break
@@ -55,7 +56,7 @@ class render_pygame:
          
         #size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
         size = [640, 480]
-        print "Framebuffer size: %d x %d" % (size[0], size[1])
+        log.debug("Framebuffer size: %d x %d" % (size[0], size[1]))
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
         
@@ -63,7 +64,7 @@ class render_pygame:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
-        print "Ready for update"
+        log.debug("Ready for update")
         
         self.screen.fill((0, 0, 0))        
         pygame.mouse.set_visible(0)
@@ -78,7 +79,7 @@ class render_pygame:
         return True
 
     def drawLogo(self):
-        logo = pygame.image.load('images/vw.png')
+        logo = pygame.image.load('images/car.jpg')
         self.screen.blit(logo, (0, 0))
         pygame.display.update()
 
@@ -131,15 +132,9 @@ class render_pygame:
     def drawSpeed(self):
         self.screen.fill(self.skin['backC'])
         if self.obd.is_connected():
-            # Getting serial data
-            last_coord=(random.randrange(10),random.randrange(10))
-            spd=self.obd.capture_once(13)
-            rpm=self.obd.capture_once(12)
-            temp_intake=self.obd.capture_once(15)
-            temp_cool=self.obd.capture_once(5)
-            timming=self.obd.capture_once(14)         
-           
+                     
             # Draw speed
+            spd=self.obd.capture_once(13)
             myfont = pygame.font.Font(self.skin['font'], 250)
             spdText = myfont.render("{:03d}".format(spd['value']), 1, self.skin['fontC'])
             self.screen.blit(spdText, (20,20))
@@ -148,6 +143,7 @@ class render_pygame:
             self.screen.blit(lblText, (380,130))
 
             # Draw revolutions
+            rpm=self.obd.capture_once(12)
             subFont = pygame.font.Font(self.skin['font'], 140)
             altText = subFont.render("{:04d}".format(rpm['value']), 1, self.skin['fontC'])
             self.screen.blit(altText, (10,220))
@@ -156,6 +152,7 @@ class render_pygame:
             self.screen.blit(lblText, (265,285))
 
             # Draw coolant temperature
+            temp_cool=self.obd.capture_once(5)
             subFont = pygame.font.Font(self.skin['font'], 90)
             altText = subFont.render("{:02d}".format(temp_cool["value"]), 1, self.skin['fontC'])
             self.screen.blit(altText, (420,220))
@@ -167,6 +164,7 @@ class render_pygame:
             self.screen.blit(lblText, (380,290))
 
             # Draw intake air temperature
+            temp_intake=self.obd.capture_once(15)
             subFont = pygame.font.Font(self.skin['font'], 90)
             altText = subFont.render("{:02d}".format(temp_intake["value"]), 1, self.skin['fontC'])
             self.screen.blit(altText, (420,330))
@@ -178,6 +176,7 @@ class render_pygame:
             self.screen.blit(lblText, (360,400))
 
             # Draw Timing Advance
+            timming=self.obd.capture_once(14)
             subFont = pygame.font.Font(self.skin['font'], 90)
             altText = subFont.render("{:02.1f}".format(timming["value"]), 1, self.skin['fontC'])
             self.screen.blit(altText, (40,330))
