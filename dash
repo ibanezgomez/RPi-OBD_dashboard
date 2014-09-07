@@ -3,11 +3,12 @@
 # vim :set tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
 import time
+from threading import Thread
+import signal
 
 from render import *
 from gpio.switch import *
 from utils.logger import log
-
 
 # name:  skin name
 # font:  font name
@@ -18,35 +19,56 @@ skins = [
        {'name': 'oemNight', 'font': 'fonts/digital7.ttf', 'fontC': (36,44,43), 'backC': (28,70,156)}
 ]
 
+def checkSwitch():
+    global change
+    global reading       
+    while reading:
+        if switch.read(0)==1: change=True
+        else: change=False
+        time.sleep(0.3)
+        
+
 def updateOpt(nOpt):
     if current_option >= 0 and current_option <= nOpt: return current_option+1
     else: return 0
 
+def end_read(signal,frame):
+    print "Ctrl+C captured, EXIT."
+    reading=False
+    sys.exit(0)
+
+#signal.signal(signal.SIGINT, end_read)
+
+
 current_option = 1
-show_logo      = True
+show_logo      = False
+change         = False
+reading        = True
 
 # Pygame render
 render=render_pygame(skins[0])
 
 #GPIO switch
 switch = switch()
-        
+t = Thread(target=checkSwitch)
+t.start()       
+
+if show_logo: 
+        render.drawLogo()
+        time.sleep(4)
+
 while True:
     h=int(time.strftime("%H"))
     if h>19 or h<7: render.changeSkin(skins[1]) 
     else: render.changeSkin(skins[0]) 
- 	
-    if show_logo: 
-        render.drawLogo()
-        time.sleep(4)
-        show_logo=False
 
     log.debug("Soy el modo: "+str(current_option))
-    change = False
     while(change==False):
         render.options[current_option]()
-        if switch.read(0)==1: change=True
-        time.sleep(0.3)
+    change=False
     current_option=updateOpt(len(render.options)-2)
     log.debug("Salgo del antiguo modo ahora soy: "+str(current_option))
+
+
+
 

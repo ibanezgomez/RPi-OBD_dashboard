@@ -1,0 +1,134 @@
+2014-09-07 22:13:53,725 - [sysloger] - DEBUG - render.py - 33 - OBD serial interface connected
+2014-09-07 22:13:53,866 - [sysloger] - DEBUG - render.py - 59 - Framebuffer size: 640 x 480
+2014-09-07 22:13:59,462 - [sysloger] - DEBUG - render.py - 67 - Ready for update
+2014-09-07 22:13:59,476 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:14:01,672 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:14:01,680 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:14:04,374 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:14:04,380 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:14:07,092 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:14:07,099 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:14:09,601 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:14:09,608 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:14:11,496 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:14:11,503 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:14:16,623 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:14:16,630 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:14:19,074 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:14:19,088 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:14:21,054 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:14:21,061 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:14:21,569 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:14:21,575 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:14:23,618 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:14:23,633 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:14:27,308 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:14:27,315 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:14:30,499 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:14:30,506 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:14:37,804 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:14:37,811 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:14:39,816 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:14:39,822 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:14:40,926 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:14:40,932 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:14:46,057 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:14:46,064 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:14:48,997 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:14:49,003 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:14:51,398 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:14:51,416 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:14:55,178 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:14:55,194 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:14:56,943 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:14:56,950 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:15:02,059 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:15:02,071 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:15:02,323 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:15:02,329 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:15:02,556 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:15:02,563 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:15:03,071 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:15:03,077 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:15:03,240 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:15:03,247 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:15:03,982 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:15:03,988 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:15:04,239 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:15:04,246 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:15:04,344 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:15:04,350 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:15:04,855 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:15:04,862 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:15:05,025 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:15:05,032 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:15:05,767 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:15:05,774 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:15:06,023 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:15:06,029 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:15:06,168 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:15:06,175 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:15:06,678 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:15:06,684 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:15:06,849 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:15:06,855 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:15:07,590 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:15:07,601 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:15:07,854 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:15:07,860 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:15:08,005 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:15:08,012 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:15:08,269 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:15:08,275 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:15:09,534 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:15:09,541 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:15:19,048 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:15:19,055 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:15:27,835 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:15:27,845 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:15:36,259 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:15:36,265 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:15:40,009 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:15:40,015 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:19:06,922 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:19:06,935 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:19:11,343 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:19:11,349 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:19:13,554 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:19:13,560 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:19:16,817 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:19:16,824 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:19:19,581 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:19:19,587 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:19:22,416 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:19:22,422 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:19:31,187 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:19:31,193 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:19:31,445 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:19:31,452 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:19:31,640 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:19:31,646 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:19:32,896 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:19:32,902 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:19:34,789 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:19:34,796 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:41:07,228 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:41:07,243 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:41:09,201 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:41:09,208 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:41:11,149 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:41:11,156 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:41:40,471 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:41:40,484 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:41:42,077 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:41:42,084 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
+2014-09-07 22:41:45,749 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 2
+2014-09-07 22:41:45,755 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 2
+2014-09-07 22:41:46,006 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 3
+2014-09-07 22:41:46,013 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 3
+2014-09-07 22:41:47,697 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 4
+2014-09-07 22:41:47,704 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 4
+2014-09-07 22:41:49,961 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 0
+2014-09-07 22:41:49,967 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 0
+2014-09-07 22:41:51,230 - [sysloger] - DEBUG - dash - 70 - Salgo del antiguo modo ahora soy: 1
+2014-09-07 22:41:51,236 - [sysloger] - DEBUG - dash - 65 - Soy el modo: 1
