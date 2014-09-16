@@ -1,0 +1,28 @@
+#screen /dev/ttyUSB0 38400
+
+SUPORTED (Golf IV GTI AUM)
+
+00, PIDs supported [01 - 20] -> 41 00 BE 1F E8 11 
+-------------------------------------------------
+01, Monitor status since DTCs cleared. (Includes malfunction indicator lamp (MIL) status and number of DTCs.)
+03, Fuel system status	
+04, Calculated engine load value	
+05, Engine coolant temperature	
+06, Short term fuel % trim—Bank 1	
+07, Long term fuel % trim—Bank 1	
+0C, Engine RPM	
+0D, Vehicle speed	
+0E, Timing advance	
+0F, Intake air temperature	
+10, MAF air flow rate	
+11, Throttle position	
+12, Commanded secondary air status
+13, Oxygen sensors present
+15, Bank 1, Sensor 2:
+Oxygen sensor voltage,
+Short term fuel trim
+1C, OBD standards this vehicle conforms to
+
+20, PIDs supported [21 - 40] ->   ???
+---------------------------------------------
+

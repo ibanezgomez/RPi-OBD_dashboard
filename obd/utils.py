@@ -4,7 +4,7 @@ import platform
 def scanSerialTest():
     available = []
     try:
-      s = serial.Serial("/dev/pts/2")
+      s = serial.Serial("/dev/pts/6")
       available.append(s.portstr)
       s.close()   # explicit close 'cause of delayed GC in java
     except serial.SerialException:

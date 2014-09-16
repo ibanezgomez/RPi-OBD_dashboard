@@ -7,13 +7,20 @@ import sensors
 import io
 from utils import *
 
-
+from threading import Thread
 
 class OBD_Capture():
 
-    def __init__(self):
+    def __init__(self, threads=False):
         self.port = None
-        localtime = time.localtime(time.time())
+        self.connect()
+        #time.sleep(10)
+        if threads:
+            self.currentSensors = [12, 13, 4, 5]
+            self.lastRead = []
+            self.reading  = True
+            t = Thread(target=self.capture_thread)
+            t.start() 
 
     def connect(self):
         portnames = scanSerialTest()
@@ -33,43 +40,117 @@ class OBD_Capture():
     def is_connected(self):
         return self.port
     
-    # 0: pids
-    # 1: dtc_status
-    # 2: dtc_ff
-    # 3: fuel_status
-    # 4: load
-    # 5: temp
-    # 6: short_term_fuel_trim_1
-    # 7: long_term_fuel_trim_1
-    # 8: short_term_fuel_trim_2
-    # 9: long_term_fuel_trim_2
-    # 10: fuel_pressure
-    # 11: manifold_pressure
-    # 12: rpm
-    # 13: speed
-    # 14: timing_advance
-    # 15: intake_air_temp
-    # 16: maf
-    # 17: throttle_pos
-    # 18: secondary_air_status
-    # 19: o2_sensor_positions
-    # 20: o211
-    # 21: o212
-    # 22: o213
-    # 23: o214
-    # 24: o221
-    # 25: o222
-    # 26: o223
-    # 27: o224
-    # 28: obd_standard
-    # 29: o2_sensor_position_b
-    # 30: aux_input
-    # 31: engine_time
-    # 32: engine_mil_time    
     def capture_once(self, sensor):
         (n, v, u) = self.port.sensor(sensor)
         return {"name": n.strip(), "value": v, "unit": u}
 
+    def capture_thread(self):
+        while self.reading:
+            read = []
+            for i in self.currentSensors:
+                #print i
+                read.append(self.capture_once(i))
+            self.lastRead = read
+            self.block=False
+        print("End OBD read thread")
 
+    def change_sensors(self, sensors):
+        self.currentSensors=sensors
+        time.sleep(0.5)
 
+    def getDTCstatus(self):
+        return self.capture_once(1)
+
+    def getDTCFF(self):
+        return self.capture_once(2)
+
+    def getFuelStatus(self):
+        return self.capture_once(3)
+
+    def getLoad(self):
+        return self.capture_once(4)
+
+    def getTemp(self):
+        return self.capture_once(5)
+
+    def getShortTermFuel1(self):
+        return self.capture_once(6)
+
+    def getLongTermFuel1(self):
+        return self.capture_once(7)
+
+    def getShortTermFuel2(self):
+        return self.capture_once(8)
+    
+    def getLongTermFuel2(self):
+        return self.capture_once(9)
+
+    def getFuelPress(self):
+        return self.capture_once(10)
+
+    def getManifoldPress(self):
+        return self.capture_once(11)
+
+    def getRPM(self):
+        return self.capture_once(12)
+
+    def getSpeed(self):
+        return self.capture_once(13)
+
+    def getTimmingAdv(self):
+        return self.capture_once(14)
+
+    def getIntakeAirTemp(self):
+        return self.capture_once(15)
+
+    def getMAF(self):
+        return self.capture_once(16)
+
+    def getThrottlePos(self):
+        return self.capture_once(17)
+    
+    def getSecondaryAirStatus(self):
+        return self.capture_once(18)
+
+    def getO2SensorPosition(self):
+        return self.capture_once(19)
+
+    def getO211(self):
+        return self.capture_once(20)
+
+    def getO212(self):
+        return self.capture_once(21)
+
+    def getO213(self):
+        return self.capture_once(22)
+
+    def getO214(self):
+        return self.capture_once(23)
+
+    def getO221(self):
+        return self.capture_once(24)
+
+    def getO222(self):
+        return self.capture_once(25)
+
+    def getO223(self):
+        return self.capture_once(26)
+    
+    def getO224(self):
+        return self.capture_once(27)
+
+    def getOBDStandard(self):
+        return self.capture_once(28)
+
+    def getO2SensorPositionB(self):
+        return self.capture_once(29)
+
+    def getAuxInput(self):
+        return self.capture_once(30)
+
+    def getEngineTime(self):
+        return self.capture_once(31)
+
+    def getEngineMilTime(self):
+        return self.capture_once(32)
 
