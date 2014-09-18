@@ -25,11 +25,19 @@ class render_pygame:
             5 : self.drawTemp
         }
 
+        self.sensors = {
+            0 : [],
+            1 : [12,13],
+            2 : [],
+            3 : [],
+            4 : [],
+            5 : []
+        }
+
         self.skin=skin
 
         #OBD
-        self.obd = OBD_Capture()
-        self.obd.connect()
+        self.obd = OBD_Capture(threads=True)
         if self.obd.is_connected():
             log.debug("OBD serial interface connected")
         else:
@@ -187,9 +195,12 @@ class render_pygame:
 
 
     def drawSpeed(self):   
+        sensors=[12, 13] #RPM & Speed
         self.screen.fill(self.skin['backC'])          
+        self.obd.change_sensors(sensors)
+
         # Draw speed
-        spd=self.obd.capture_once(13)
+        spd=self.obd.lastRead[1]
         myfont = pygame.font.Font(self.skin['font'], 300)
         spdText = myfont.render("{:03d}".format(spd['value']), 1, self.skin['fontC'])
         self.screen.blit(spdText, (110,40))
@@ -198,7 +209,7 @@ class render_pygame:
         self.screen.blit(lblText, (520,220))
 
         # Draw revolutions
-        rpm=self.obd.capture_once(12)
+        rpm=self.obd.lastRead[0]
         subFont = pygame.font.Font(self.skin['font'], 140)
         altText = subFont.render("{:04d}".format(rpm['value']), 1, self.skin['fontC'])
         self.screen.blit(altText, (190,290))

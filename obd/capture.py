@@ -12,16 +12,17 @@ from threading import Thread
 class OBD_Capture():
 
     def __init__(self, threads=False):
-        self.port = None
+        self.port  = None
+        self.block = False
         self.connect()
-        #time.sleep(10)
         if threads:
-            self.currentSensors = [12, 13, 4, 5]
-            self.lastRead = []
-            self.reading  = True
-            self.block  = False
-            self.running = True
-            self.t = Thread(target=self.capture_thread)
+            self.currentSensors = []
+            self.lastRead       = []
+
+            self.reading        = True
+            self.running        = True
+
+            self.t              = Thread(target=self.capture_thread)
             self.t.start() 
 
     def connect(self):
@@ -37,10 +38,19 @@ class OBD_Capture():
             print("Connected to "+self.port.port.name)
 
     def disconnect(self):
+        try:
+            self.running=False
+            self.reading=False
+        except:
+            pass
+        self.port.close()
         return True
             
-    def is_connected(self):
+    def connected(self):
         return self.port
+
+    def locked(self):
+        return self.block
     
     def capture_once(self, sensor):
         (n, v, u) = self.port.sensor(sensor)
@@ -52,10 +62,12 @@ class OBD_Capture():
                 read = []
                 for i in self.currentSensors:
                     read.append(self.capture_once(i))
-                self.block=False
                 self.lastRead = read
-            print("End OBD read thread")
+            self.lastRead = []
+            for i in self.currentSensors: self.lastRead.append(self.capture_once(i))
             self.reading=True
+            self.block=False
+        print("End OBD read thread")
 
     def change_sensors(self, sensors):
         self.block=True

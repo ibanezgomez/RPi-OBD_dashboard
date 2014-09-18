@@ -13,4 +13,4 @@ while obd.block:
 for i in range(0,10):
 	print i, "LastRead: ", obd.lastRead
 	time.sleep(0.1)
-obd.running=False
+obd.disconnect()
