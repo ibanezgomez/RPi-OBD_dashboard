@@ -19,8 +19,10 @@ class OBD_Capture():
             self.currentSensors = [12, 13, 4, 5]
             self.lastRead = []
             self.reading  = True
-            t = Thread(target=self.capture_thread)
-            t.start() 
+            self.block  = False
+            self.running = True
+            self.t = Thread(target=self.capture_thread)
+            self.t.start() 
 
     def connect(self):
         portnames = scanSerialTest()
@@ -45,18 +47,20 @@ class OBD_Capture():
         return {"name": n.strip(), "value": v, "unit": u}
 
     def capture_thread(self):
-        while self.reading:
-            read = []
-            for i in self.currentSensors:
-                #print i
-                read.append(self.capture_once(i))
-            self.lastRead = read
-            self.block=False
-        print("End OBD read thread")
+        while self.running:
+            while self.reading:
+                read = []
+                for i in self.currentSensors:
+                    read.append(self.capture_once(i))
+                self.block=False
+                self.lastRead = read
+            print("End OBD read thread")
+            self.reading=True
 
     def change_sensors(self, sensors):
+        self.block=True
         self.currentSensors=sensors
-        time.sleep(0.5)
+        self.reading=False
 
     def getDTCstatus(self):
         return self.capture_once(1)
