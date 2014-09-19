@@ -62,11 +62,13 @@ while True:
     if h>19 or h<7: render.changeSkin(skins[1]) 
     else: render.changeSkin(skins[0]) 
 
-    log.debug("Soy el modo: "+str(current_option))
+    m=render.modes[current_option]
+    log.debug("Loading mode: "+str(m['name']))
     while(change==False):
-        render.options[current_option]()
+        m['name']()
     change=False
     current_option=updateOpt(len(render.options)-2)
+    render.refreshData(current_option)
     log.debug("Salgo del antiguo modo ahora soy: "+str(current_option))
 
 

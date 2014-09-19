@@ -3,7 +3,6 @@ import time
 import subprocess
 import sys
 import math
-#import serial
 import random
 import logging
 import pygame
@@ -28,10 +27,20 @@ class render_pygame:
         self.sensors = {
             0 : [],
             1 : [12,13],
-            2 : [],
-            3 : [],
-            4 : [],
-            5 : []
+            2 : [11],
+            3 : [17],
+            4 : [16],
+            5 : [5,15]
+        }
+  
+        self.modes = {
+            0 : { 'name': self.drawLogo,     'sensors': []      },
+            1 : { 'name': self.drawSpeed,    'sensors': [12, 13]},
+            2 : { 'name': self.drawBoost,    'sensors': [11]    },
+            3 : { 'name': self.drawThrottle, 'sensors': [17]    },
+            4 : { 'name': self.drawMAF,      'sensors': [16]    },
+            0 : { 'name': self.drawTemp,     'sensors': [5, 15] },
+
         }
 
         self.skin=skin
@@ -82,8 +91,12 @@ class render_pygame:
         # Render the screen
         pygame.display.update()
 
+    def refreshData(self, opt):
+        self.obd.changeSensors(self.modes[opt]['sensors'])
+        while self.obd.lock: time.sleep(0.1)
+        return True
+
     def changeSkin(self, skin):
-        #ToDo: check if skin is instance of "skin type" 
         self.skin=skin
         return True
 
@@ -195,10 +208,7 @@ class render_pygame:
 
 
     def drawSpeed(self):   
-        sensors=[12, 13] #RPM & Speed
         self.screen.fill(self.skin['backC'])          
-        self.obd.change_sensors(sensors)
-
         # Draw speed
         spd=self.obd.lastRead[1]
         myfont = pygame.font.Font(self.skin['font'], 300)
