@@ -67,7 +67,7 @@ while True:
     while(change==False):
         m['name']()
     change=False
-    current_option=updateOpt(len(render.options)-2)
+    current_option=updateOpt(len(render.modes)-2)
     render.refreshData(current_option)
     log.debug("Salgo del antiguo modo ahora soy: "+str(current_option))
 
