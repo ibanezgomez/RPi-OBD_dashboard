@@ -15,27 +15,9 @@ class render_pygame:
 
     def __init__(self, skin):
 
-        self.options = {
-            0 : self.drawLogo,
-            1 : self.drawSpeed,
-            2 : self.drawBoost,
-            3 : self.drawThrottle,
-            4 : self.drawMAF,
-            5 : self.drawTemp
-        }
-
-        self.sensors = {
-            0 : [],
-            1 : [12,13],
-            2 : [11],
-            3 : [17],
-            4 : [16],
-            5 : [5,15]
-        }
-  
         self.modes = {
             0 : { 'name': self.drawLogo,     'sensors': []      },
-            1 : { 'name': self.drawSpeed,    'sensors': [12, 13]},
+            1 : { 'name': self.drawSpeed,    'sensors': [13, 12]},
             2 : { 'name': self.drawBoost,    'sensors': [11]    },
             3 : { 'name': self.drawThrottle, 'sensors': [17]    },
             4 : { 'name': self.drawMAF,      'sensors': [16]    },
@@ -47,7 +29,7 @@ class render_pygame:
 
         #OBD
         self.obd = OBD_Capture(threads=True)
-        if self.obd.is_connected():
+        if self.obd.connected():
             log.debug("OBD serial interface connected")
         else:
             log.debug("OBD serial interface not found")
@@ -92,8 +74,8 @@ class render_pygame:
         pygame.display.update()
 
     def refreshData(self, opt):
-        self.obd.changeSensors(self.modes[opt]['sensors'])
-        while self.obd.lock: time.sleep(0.1)
+        self.obd.change_sensors(self.modes[opt]['sensors'])
+        while self.obd.locked(): time.sleep(0.1)
         return True
 
     def changeSkin(self, skin):
@@ -105,24 +87,46 @@ class render_pygame:
         self.screen.blit(logo, (0, 0))
         pygame.display.update()
 
+    def drawSpeed(self):   
+        self.screen.fill(self.skin['backC'])          
+        # Draw speed
+        spd=self.obd.lastRead[0]
+        myfont = pygame.font.Font(self.skin['font'], 300)
+        spdText = myfont.render("{:03d}".format(spd['value']), 1, self.skin['fontC'])
+        self.screen.blit(spdText, (110,40))
+        labelFont = pygame.font.Font(self.skin['font'], 50)
+        lblText = labelFont.render(spd['unit'], 1, self.skin['fontC'])
+        self.screen.blit(lblText, (520,220))
+
+        # Draw revolutions
+        rpm=self.obd.lastRead[1]
+        subFont = pygame.font.Font(self.skin['font'], 140)
+        altText = subFont.render("{:04d}".format(rpm['value']), 1, self.skin['fontC'])
+        self.screen.blit(altText, (190,290))
+        labelFont = pygame.font.Font(self.skin['font'], 50)
+        lblText = labelFont.render(rpm['unit'], 1, self.skin['fontC'])
+        self.screen.blit(lblText, (450,355))
+
+        pygame.display.update()
+
     def drawBoost(self):
-        i=self.obd.capture_once(11)['value']
         self.screen.fill(self.skin['backC'])
+        boost=self.obd.lastRead[0]
         myfont = pygame.font.Font(self.skin['font'],250)
-        spdText = myfont.render("{:01.2f}".format(float(abs(i))), 1, self.skin['fontC'])
-        self.screen.blit(spdText, (100,50))
+        boostText = myfont.render("{:01.2f}".format(float(abs(boost['value']))), 1, self.skin['fontC'])
+        self.screen.blit(boostText, (100,50))
         labelFont = pygame.font.Font(self.skin['font'],60)
-        lblText = labelFont.render("Bar", 1, self.skin['fontC'])
+        lblText = labelFont.render(boost['unit'], 1, self.skin['fontC'])
         self.screen.blit(lblText, (555,190))
-        self.drawBar((i*100)/8)
+        self.drawBar((boost['value']*100)/8)
         labelFont = pygame.font.Font(self.skin['font'],90)
         lblText = labelFont.render("Boost charge", 1, self.skin['fontC'])
         self.screen.blit(lblText, (85,350))
         pygame.display.update()
 
     def drawThrottle(self):
-        throttle=self.obd.capture_once(17)
         self.screen.fill(self.skin['backC'])
+        throttle=self.obd.lastRead[0]
         myfont = pygame.font.Font(self.skin['font'],250)
         spdText = myfont.render("{:03.1f}".format(throttle['value']), 1, self.skin['fontC'])
         self.screen.blit(spdText, (100,50))
@@ -135,21 +139,21 @@ class render_pygame:
         self.screen.blit(lblText, (85,350))
 
         # Draw Timing Advance
-        # timming=self.obd.capture_once(14)
-        # subFont = pygame.font.Font(self.skin['font'], 90)
-        # altText = subFont.render("{:02.1f}".format(timming["value"]), 1, self.skin['fontC'])
-        # self.screen.blit(altText, (40,330))
-        # labelFont = pygame.font.Font(self.skin['font'], 60)
-        # lblText = labelFont.render(timming["unit"], 1, self.skin['fontC'])
-        # self.screen.blit(lblText, (250, 350))
-        # labelFont = pygame.font.Font(self.skin['font'], 40)
-        # lblText = labelFont.render(timming["name"], 1, self.skin['fontC'])  
-        # self.screen.blit(lblText, (60,400))
+        timming=self.obd.lastRead[0]
+        subFont = pygame.font.Font(self.skin['font'], 90)
+        altText = subFont.render("{:02.1f}".format(timming["value"]), 1, self.skin['fontC'])
+        self.screen.blit(altText, (40,330))
+        labelFont = pygame.font.Font(self.skin['font'], 60)
+        lblText = labelFont.render(timming["unit"], 1, self.skin['fontC'])
+        self.screen.blit(lblText, (250, 350))
+        labelFont = pygame.font.Font(self.skin['font'], 40)
+        lblText = labelFont.render(timming["name"], 1, self.skin['fontC'])  
+        self.screen.blit(lblText, (60,400))
 
         pygame.display.update()
 
     def drawMAF(self):
-        maf=self.obd.capture_once(16)
+        maf=self.obd.lastRead[0]
         self.screen.fill(self.skin['backC'])
         myfont = pygame.font.Font(self.skin['font'],180)
         spdText = myfont.render("{:07d}".format(int(maf['value'])), 1, self.skin['fontC'])
@@ -161,6 +165,33 @@ class render_pygame:
         labelFont = pygame.font.Font(self.skin['font'],90)
         lblText = labelFont.render(maf['name'], 1, self.skin['fontC'])
         self.screen.blit(lblText, (85,350))
+        pygame.display.update()
+
+    def drawTemp(self):
+        self.screen.fill(self.skin['backC'])
+        # Draw coolant temperature
+        temp_cool=self.obd.lastRead[0]
+        subFont = pygame.font.Font(self.skin['font'], 90)
+        altText = subFont.render("{:02d}".format(temp_cool["value"]), 1, self.skin['fontC'])
+        self.screen.blit(altText, (420,220))
+        labelFont = pygame.font.Font(self.skin['font'], 60)
+        lblText = labelFont.render(temp_cool["unit"], 1, self.skin['fontC'])
+        self.screen.blit(lblText, (545,240))
+        labelFont = pygame.font.Font(self.skin['font'], 40)
+        lblText = labelFont.render(temp_cool["name"], 1, self.skin['fontC'])
+        self.screen.blit(lblText, (380,290))
+
+        # Draw intake air temperature
+        temp_intake=self.obd.lastRead[1]
+        subFont = pygame.font.Font(self.skin['font'], 90)
+        altText = subFont.render("{:02d}".format(temp_intake["value"]), 1, self.skin['fontC'])
+        self.screen.blit(altText, (420,330))
+        labelFont = pygame.font.Font(self.skin['font'], 60)
+        lblText = labelFont.render(temp_intake["unit"], 1, self.skin['fontC'])
+        self.screen.blit(lblText, (545,350))
+        labelFont = pygame.font.Font(self.skin['font'], 40)
+        lblText = labelFont.render(temp_intake["name"], 1, self.skin['fontC'])  
+        self.screen.blit(lblText, (360,400))
         pygame.display.update()
 
     
@@ -206,59 +237,6 @@ class render_pygame:
             time.sleep(0.1)
             y=y-20
 
-
-    def drawSpeed(self):   
-        self.screen.fill(self.skin['backC'])          
-        # Draw speed
-        spd=self.obd.lastRead[1]
-        myfont = pygame.font.Font(self.skin['font'], 300)
-        spdText = myfont.render("{:03d}".format(spd['value']), 1, self.skin['fontC'])
-        self.screen.blit(spdText, (110,40))
-        labelFont = pygame.font.Font(self.skin['font'], 50)
-        lblText = labelFont.render(spd['unit'], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (520,220))
-
-        # Draw revolutions
-        rpm=self.obd.lastRead[0]
-        subFont = pygame.font.Font(self.skin['font'], 140)
-        altText = subFont.render("{:04d}".format(rpm['value']), 1, self.skin['fontC'])
-        self.screen.blit(altText, (190,290))
-        labelFont = pygame.font.Font(self.skin['font'], 50)
-        lblText = labelFont.render(rpm['unit'], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (450,355))
-
-        pygame.display.update()
-
-
-    def drawTemp(self):
-        self.screen.fill(self.skin['backC'])
-        # Draw coolant temperature
-        temp_cool=self.obd.capture_once(5)
-        subFont = pygame.font.Font(self.skin['font'], 90)
-        altText = subFont.render("{:02d}".format(temp_cool["value"]), 1, self.skin['fontC'])
-        self.screen.blit(altText, (420,220))
-        labelFont = pygame.font.Font(self.skin['font'], 60)
-        lblText = labelFont.render(temp_cool["unit"], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (545,240))
-        labelFont = pygame.font.Font(self.skin['font'], 40)
-        lblText = labelFont.render(temp_cool["name"], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (380,290))
-
-        # Draw intake air temperature
-        temp_intake=self.obd.capture_once(15)
-        subFont = pygame.font.Font(self.skin['font'], 90)
-        altText = subFont.render("{:02d}".format(temp_intake["value"]), 1, self.skin['fontC'])
-        self.screen.blit(altText, (420,330))
-        labelFont = pygame.font.Font(self.skin['font'], 60)
-        lblText = labelFont.render(temp_intake["unit"], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (545,350))
-        labelFont = pygame.font.Font(self.skin['font'], 40)
-        lblText = labelFont.render(temp_intake["name"], 1, self.skin['fontC'])  
-        self.screen.blit(lblText, (360,400))
-        pygame.display.update()
-
-
-
     def drawBar(self, percent=20):
         color=(148, 255, 53)
         y1 = self.screen.get_height()*0.6
@@ -273,14 +251,3 @@ class render_pygame:
             font = pygame.font.Font(self.skin['font'], 90)
             vacum =font.render("VACUM", True, color)
             self.screen.blit(vacum, (240,260))
-
-
-
-#       if self.obd.is_connected():
-#            draw...
-#        else:
-#            labelFont = pygame.font.Font(self.skin['font'], 60)
-#            lblText = labelFont.render("OBD Disconnect...", 1, self.skin['fontC'])
-#           self.screen.blit(lblText, (100,50))
-#           self.obd.connect()
-#       pygame.display.update()

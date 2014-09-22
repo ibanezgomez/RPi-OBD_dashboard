@@ -25,8 +25,7 @@ def checkSwitch():
     while reading:
         if switch.read(0)==1: change=True
         else: change=False
-        time.sleep(0.3)
-        
+        time.sleep(0.3)        
 
 def updateOpt(nOpt):
     if current_option >= 0 and current_option <= nOpt: return current_option+1
@@ -63,14 +62,10 @@ while True:
     else: render.changeSkin(skins[0]) 
 
     m=render.modes[current_option]
-    log.debug("Loading mode: "+str(m['name']))
+    render.refreshData(current_option)
+    log.debug("Loading mode: "+str(current_option))
     while(change==False):
         m['name']()
     change=False
     current_option=updateOpt(len(render.modes)-2)
     render.refreshData(current_option)
-    log.debug("Salgo del antiguo modo ahora soy: "+str(current_option))
-
-
-
-

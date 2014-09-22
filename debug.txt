@@ -1,0 +1,19 @@
+2014-09-22 22:58:54,202 - [sysloger] - DEBUG - render.py - 33 - OBD serial interface connected
+2014-09-22 22:58:54,335 - [sysloger] - DEBUG - render.py - 59 - Framebuffer size: 640 x 480
+2014-09-22 22:58:55,677 - [sysloger] - DEBUG - render.py - 67 - Ready for update
+2014-09-22 22:58:55,809 - [sysloger] - DEBUG - dash - 66 - Loading mode: 1
+2014-09-22 22:59:03,405 - [sysloger] - DEBUG - dash - 66 - Loading mode: 2
+2014-09-22 22:59:06,988 - [sysloger] - DEBUG - dash - 66 - Loading mode: 3
+2014-09-22 22:59:10,164 - [sysloger] - DEBUG - dash - 66 - Loading mode: 4
+2014-09-22 22:59:13,441 - [sysloger] - DEBUG - dash - 66 - Loading mode: 0
+2014-09-22 22:59:15,657 - [sysloger] - DEBUG - dash - 66 - Loading mode: 1
+2014-09-22 22:59:18,649 - [sysloger] - DEBUG - dash - 66 - Loading mode: 2
+2014-09-22 22:59:19,734 - [sysloger] - DEBUG - dash - 66 - Loading mode: 3
+2014-09-22 22:59:21,373 - [sysloger] - DEBUG - dash - 66 - Loading mode: 4
+2014-09-22 22:59:24,041 - [sysloger] - DEBUG - dash - 66 - Loading mode: 0
+2014-09-22 22:59:30,304 - [sysloger] - DEBUG - dash - 66 - Loading mode: 1
+2014-09-22 22:59:32,543 - [sysloger] - DEBUG - dash - 66 - Loading mode: 2
+2014-09-22 22:59:36,126 - [sysloger] - DEBUG - dash - 66 - Loading mode: 3
+2014-09-22 22:59:37,436 - [sysloger] - DEBUG - dash - 66 - Loading mode: 4
+2014-09-22 22:59:42,628 - [sysloger] - DEBUG - dash - 66 - Loading mode: 0
+2014-09-22 22:59:49,677 - [sysloger] - DEBUG - dash - 66 - Loading mode: 1
