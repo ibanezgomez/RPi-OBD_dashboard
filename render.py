@@ -87,22 +87,32 @@ class render_pygame:
         self.screen.blit(logo, (0, 0))
         pygame.display.update()
 
+    def draw(self, size, pos, value):
+        myfont = pygame.font.Font(self.skin['font'], size)
+        spdText = myfont.render(value, 1, self.skin['fontC'])
+        self.screen.blit(spdText, pos)
+
     def drawSpeed(self):   
-        self.screen.fill(self.skin['backC'])          
         # Draw speed
         spd=self.obd.lastRead[0]
-        myfont = pygame.font.Font(self.skin['font'], 300)
-        spdText = myfont.render("{:03d}".format(spd['value']), 1, self.skin['fontC'])
-        self.screen.blit(spdText, (110,40))
+        
+        self.screen.fill(self.skin['backC'])          
+        self.draw(300, (110,40), "{:03d}".format(spd['value']))
+        #myfont = pygame.font.Font(self.skin['font'], 300)
+        #spdText = myfont.render("{:03d}".format(spd['value']), 1, self.skin['fontC'])
+        #self.screen.blit(spdText, (110,40))
+
         labelFont = pygame.font.Font(self.skin['font'], 50)
         lblText = labelFont.render(spd['unit'], 1, self.skin['fontC'])
         self.screen.blit(lblText, (520,220))
 
         # Draw revolutions
         rpm=self.obd.lastRead[1]
+        
         subFont = pygame.font.Font(self.skin['font'], 140)
         altText = subFont.render("{:04d}".format(rpm['value']), 1, self.skin['fontC'])
         self.screen.blit(altText, (190,290))
+
         labelFont = pygame.font.Font(self.skin['font'], 50)
         lblText = labelFont.render(rpm['unit'], 1, self.skin['fontC'])
         self.screen.blit(lblText, (450,355))
