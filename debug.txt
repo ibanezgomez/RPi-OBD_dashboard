@@ -1,13 +1,11 @@
-2014-09-23 21:53:22,207 - [sysloger] - DEBUG - manager.py - 26 - OBD serial interface connected
-2014-09-23 21:53:22,339 - [sysloger] - DEBUG - render.py - 41 - Framebuffer size: 640 x 480
-2014-09-23 21:53:24,095 - [sysloger] - DEBUG - render.py - 49 - Ready for update
-2014-09-23 21:53:28,482 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawSpeed
-2014-09-23 21:53:38,477 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawBoost
-2014-09-23 21:53:44,301 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawThrottle
-2014-09-23 21:53:46,909 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawMAF
-2014-09-23 21:53:50,057 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawTemp
-2014-09-23 21:53:58,047 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawSpeed
-2014-09-23 21:53:58,837 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawBoost
-2014-09-23 21:54:01,808 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawThrottle
-2014-09-23 21:54:04,625 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawMAF
-2014-09-23 21:54:07,053 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawTemp
+2014-09-23 18:26:12,440 - [sysloger] - DEBUG - render.py - 41 - Framebuffer size: 640 x 480
+2014-09-23 18:26:16,066 - [sysloger] - DEBUG - render.py - 49 - Ready for update
+2014-09-23 18:26:20,455 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawSpeed
+2014-09-23 18:26:22,305 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawBoost
+2014-09-23 18:26:27,642 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawThrottle
+2014-09-23 18:26:31,302 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawMAF
+2014-09-23 18:26:34,660 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawTemp
+2014-09-23 18:26:36,377 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawSpeed
+2014-09-23 18:26:40,936 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawBoost
+2014-09-23 18:26:45,824 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawThrottle
+2014-09-23 18:26:48,664 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawMAF

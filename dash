@@ -6,17 +6,7 @@ import time
 import signal
 
 from manager import *
-from gpio.switch import *
 from utils.logger import log
-
-# name:  skin name
-# font:  font name
-# fontC: font color
-# backC: background color
-skins = [
-       {'name': 'oemDay',   'font': 'fonts/digital7.ttf', 'fontC': (36,44,43), 'backC': (165,186,145)},
-       {'name': 'oemNight', 'font': 'fonts/digital7.ttf', 'fontC': (36,44,43), 'backC': (28,70,156)}
-]      
 
 def updateOpt(nOpt):
     if current_option >= 0 and current_option <= nOpt: return current_option+1
@@ -26,10 +16,7 @@ current_option = 1
 show_logo      = True
 
 # Pygame manager
-manager=Manager(skins[0])
-
-#GPIO switch
-switch = switch(threads=True)
+manager=Manager()
 
 if show_logo: 
         manager.drawLogo()
@@ -37,17 +24,11 @@ if show_logo:
         time.sleep(4)
 
 while True:
-    #h=int(time.strftime("%H"))
-    #if h>19 or h<7: manager.changeSkin(skins[1]) 
-    #else: manager.changeSkin(skins[0]) 
-
     m=manager.modes[current_option]
     manager.refreshData(current_option)
     log.debug("Loading mode: "+m['name'].__name__)
-    while(switch.change==False):
-        manager.cleanScreen()
-        m['name']()
-        manager.updateScreen()
-    switch.change=False
+    while(not manager.switch.change):
+        manager.loadMode(m['name'])
+    manager.switch.change=False
     current_option=updateOpt(len(manager.modes)-2)
     manager.refreshData(current_option)

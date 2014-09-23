@@ -1,0 +1,33 @@
+# uncomment this if your display has a black border of unused pixels visible
+# and your display can output without overscan
+disable_overscan=0
+
+# uncomment the following to adjust overscan. Use positive numbers if console
+# goes off screen, and negative if there is too much border
+#overscan_left=-10
+#overscan_right=-9
+overscan_top=-22
+overscan_bottom=-10
+
+# uncomment to force a console size. By default it will be display's size minus
+# overscan.
+
+framebuffer_width=640
+framebuffer_height=480
+
+# Rotates the display clockwise on the screen (default=0) or flips the display. 
+# display_rotate=0        Normal
+# display_rotate=1         90 degrees
+# display_rotate=2        180 degrees
+# display_rotate=3        270 degrees
+# display_rotate=0x10000  horizontal flip
+# display_rotate=0x20000  vertical flip
+
+display_rotate=2
+
+# Aspect ratio for composite output (default=1) 
+# sdtv_aspect=1  4:3
+# sdtv_aspect=2  14:9
+# sdtv_aspect=3  16:9
+
+sdtv_aspect=3

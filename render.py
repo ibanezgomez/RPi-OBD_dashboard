@@ -55,6 +55,8 @@ class RenderPygame:
         # Render the screen
         self.pygame.display.update()
 
+    def clean(self): 
+        self.screen.fill(self.skin['backC']) 
 
     def draw(self, size, pos, value):
         myfont = self.pygame.font.Font(self.skin['font'], size)
