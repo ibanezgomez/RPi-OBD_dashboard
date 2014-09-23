@@ -63,7 +63,7 @@ while True:
 
     m=render.modes[current_option]
     render.refreshData(current_option)
-    log.debug("Loading mode: "+str(current_option))
+    log.debug("Loading mode: "+m['name'].__name__)
     while(change==False):
         m['name']()
     change=False

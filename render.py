@@ -16,12 +16,12 @@ class render_pygame:
     def __init__(self, skin):
 
         self.modes = {
-            0 : { 'name': self.drawLogo,     'sensors': []      },
-            1 : { 'name': self.drawSpeed,    'sensors': [13, 12]},
-            2 : { 'name': self.drawBoost,    'sensors': [11]    },
-            3 : { 'name': self.drawThrottle, 'sensors': [17]    },
-            4 : { 'name': self.drawMAF,      'sensors': [16]    },
-            0 : { 'name': self.drawTemp,     'sensors': [5, 15] },
+            0 : { 'name': self.drawLogo    , 'sensors': []      },
+            1 : { 'name': self.drawSpeed   , 'sensors': [13, 12]},
+            2 : { 'name': self.drawBoost   , 'sensors': [11]    },
+            3 : { 'name': self.drawThrottle, 'sensors': [17, 14]},
+            4 : { 'name': self.drawMAF     , 'sensors': [16]    },
+            0 : { 'name': self.drawTemp    , 'sensors': [5, 15] },
 
         }
 
@@ -75,7 +75,9 @@ class render_pygame:
 
     def refreshData(self, opt):
         self.obd.change_sensors(self.modes[opt]['sensors'])
-        while self.obd.locked(): time.sleep(0.1)
+        while self.obd.locked(): 
+            print("Waiting for unlock...")
+            time.sleep(0.1)
         return True
 
     def changeSkin(self, skin):
@@ -92,116 +94,78 @@ class render_pygame:
         spdText = myfont.render(value, 1, self.skin['fontC'])
         self.screen.blit(spdText, pos)
 
-    def drawSpeed(self):   
-        # Draw speed
+    def drawSpeed(self):  
+        self.screen.fill(self.skin['backC'])  
+
+        # Speed
         spd=self.obd.lastRead[0]
-        
-        self.screen.fill(self.skin['backC'])          
         self.draw(300, (110,40), "{:03d}".format(spd['value']))
-        #myfont = pygame.font.Font(self.skin['font'], 300)
-        #spdText = myfont.render("{:03d}".format(spd['value']), 1, self.skin['fontC'])
-        #self.screen.blit(spdText, (110,40))
+        self.draw(50, (520,220), spd['unit'])
 
-        labelFont = pygame.font.Font(self.skin['font'], 50)
-        lblText = labelFont.render(spd['unit'], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (520,220))
-
-        # Draw revolutions
+        # RPM
         rpm=self.obd.lastRead[1]
-        
-        subFont = pygame.font.Font(self.skin['font'], 140)
-        altText = subFont.render("{:04d}".format(rpm['value']), 1, self.skin['fontC'])
-        self.screen.blit(altText, (190,290))
-
-        labelFont = pygame.font.Font(self.skin['font'], 50)
-        lblText = labelFont.render(rpm['unit'], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (450,355))
+        self.draw(140, (190,290), "{:04d}".format(rpm['value']))
+        self.draw(50, (450,355), rpm['unit'])
 
         pygame.display.update()
 
     def drawBoost(self):
         self.screen.fill(self.skin['backC'])
+
+        # Boost
         boost=self.obd.lastRead[0]
-        myfont = pygame.font.Font(self.skin['font'],250)
-        boostText = myfont.render("{:01.2f}".format(float(abs(boost['value']))), 1, self.skin['fontC'])
-        self.screen.blit(boostText, (100,50))
-        labelFont = pygame.font.Font(self.skin['font'],60)
-        lblText = labelFont.render(boost['unit'], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (555,190))
+        self.draw(250, (100,50), "{:01.2f}".format(float(abs(boost['value']))))
+        self.draw(60, (555,190), boost['unit'])
         self.drawBar((boost['value']*100)/8)
-        labelFont = pygame.font.Font(self.skin['font'],90)
-        lblText = labelFont.render("Boost charge", 1, self.skin['fontC'])
-        self.screen.blit(lblText, (85,350))
+        self.draw(90, (85,350), boost['name'])
+
         pygame.display.update()
 
     def drawThrottle(self):
         self.screen.fill(self.skin['backC'])
-        throttle=self.obd.lastRead[0]
-        myfont = pygame.font.Font(self.skin['font'],250)
-        spdText = myfont.render("{:03.1f}".format(throttle['value']), 1, self.skin['fontC'])
-        self.screen.blit(spdText, (100,50))
-        labelFont = pygame.font.Font(self.skin['font'],60)
-        lblText = labelFont.render(throttle['unit'], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (555,190))
-        self.drawBar(throttle['value'])
-        labelFont = pygame.font.Font(self.skin['font'],90)
-        lblText = labelFont.render(throttle['name'], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (85,350))
 
-        # Draw Timing Advance
-        timming=self.obd.lastRead[0]
-        subFont = pygame.font.Font(self.skin['font'], 90)
-        altText = subFont.render("{:02.1f}".format(timming["value"]), 1, self.skin['fontC'])
-        self.screen.blit(altText, (40,330))
-        labelFont = pygame.font.Font(self.skin['font'], 60)
-        lblText = labelFont.render(timming["unit"], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (250, 350))
-        labelFont = pygame.font.Font(self.skin['font'], 40)
-        lblText = labelFont.render(timming["name"], 1, self.skin['fontC'])  
-        self.screen.blit(lblText, (60,400))
+        # Throttle
+        throttle=self.obd.lastRead[0]
+        self.draw(250, (100,50), "{:03.1f}".format(throttle['value']))
+        self.draw(60, (555,190), throttle['unit'])
+        self.drawBar(throttle['value'])
+        self.draw(90, (85,350), throttle['name'])
+
+        # Timing Advance
+        timming=self.obd.lastRead[1]
+        self.draw(90, (40,330), "{:02.1f}".format(timming["value"]))
+        self.draw(60, (250, 350), timming["unit"])
+        self.draw(40, (60,400), timming["name"])
 
         pygame.display.update()
 
     def drawMAF(self):
-        maf=self.obd.lastRead[0]
         self.screen.fill(self.skin['backC'])
-        myfont = pygame.font.Font(self.skin['font'],180)
-        spdText = myfont.render("{:07d}".format(int(maf['value'])), 1, self.skin['fontC'])
-        self.screen.blit(spdText, (40,50))
-        labelFont = pygame.font.Font(self.skin['font'],60)
-        lblText = labelFont.render(maf['unit'], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (555,190))
+
+        # MAF
+        maf=self.obd.lastRead[0]
+        self.draw(180, (40,50), "{:02.1f}".format(maf["value"]))
+        self.draw(60, (555, 190), maf["unit"])
         self.drawBar((maf['value']*100)/2340515) 
-        labelFont = pygame.font.Font(self.skin['font'],90)
-        lblText = labelFont.render(maf['name'], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (85,350))
+        self.draw(90, (85,350), maf["name"])
+        
         pygame.display.update()
 
     def drawTemp(self):
         self.screen.fill(self.skin['backC'])
+
         # Draw coolant temperature
         temp_cool=self.obd.lastRead[0]
-        subFont = pygame.font.Font(self.skin['font'], 90)
-        altText = subFont.render("{:02d}".format(temp_cool["value"]), 1, self.skin['fontC'])
-        self.screen.blit(altText, (420,220))
-        labelFont = pygame.font.Font(self.skin['font'], 60)
-        lblText = labelFont.render(temp_cool["unit"], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (545,240))
-        labelFont = pygame.font.Font(self.skin['font'], 40)
-        lblText = labelFont.render(temp_cool["name"], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (380,290))
+        self.draw(90, (420,220), "{:02d}".format(temp_cool["value"]))
+        self.draw(60, (545,240), temp_cool["unit"])
+        self.draw(40, (380,290), temp_cool["name"])
 
         # Draw intake air temperature
         temp_intake=self.obd.lastRead[1]
-        subFont = pygame.font.Font(self.skin['font'], 90)
-        altText = subFont.render("{:02d}".format(temp_intake["value"]), 1, self.skin['fontC'])
-        self.screen.blit(altText, (420,330))
-        labelFont = pygame.font.Font(self.skin['font'], 60)
-        lblText = labelFont.render(temp_intake["unit"], 1, self.skin['fontC'])
-        self.screen.blit(lblText, (545,350))
-        labelFont = pygame.font.Font(self.skin['font'], 40)
-        lblText = labelFont.render(temp_intake["name"], 1, self.skin['fontC'])  
-        self.screen.blit(lblText, (360,400))
+        self.draw(90, (420,330), "{:02d}".format(temp_intake["value"]))
+        self.draw(60, (545,350), temp_intake["unit"])
+        self.draw(40, (360,400), temp_intake["name"])
+
         pygame.display.update()
 
     
