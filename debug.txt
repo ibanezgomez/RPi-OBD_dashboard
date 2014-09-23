@@ -1,10 +1,13 @@
-2014-09-23 20:20:17,211 - [sysloger] - DEBUG - render.py - 33 - OBD serial interface connected
-2014-09-23 20:20:17,337 - [sysloger] - DEBUG - render.py - 59 - Framebuffer size: 640 x 480
-2014-09-23 20:20:18,584 - [sysloger] - DEBUG - render.py - 67 - Ready for update
-2014-09-23 20:20:18,714 - [sysloger] - DEBUG - dash - 66 - Loading mode: drawSpeed
-2014-09-23 20:20:23,002 - [sysloger] - DEBUG - dash - 66 - Loading mode: drawBoost
-2014-09-23 20:20:30,476 - [sysloger] - DEBUG - dash - 66 - Loading mode: drawThrottle
-2014-09-23 20:20:32,917 - [sysloger] - DEBUG - dash - 66 - Loading mode: drawMAF
-2014-09-23 20:20:36,586 - [sysloger] - DEBUG - dash - 66 - Loading mode: drawTemp
-2014-09-23 20:21:11,796 - [sysloger] - DEBUG - dash - 66 - Loading mode: drawSpeed
-2014-09-23 20:21:14,715 - [sysloger] - DEBUG - dash - 66 - Loading mode: drawBoost
+2014-09-23 21:53:22,207 - [sysloger] - DEBUG - manager.py - 26 - OBD serial interface connected
+2014-09-23 21:53:22,339 - [sysloger] - DEBUG - render.py - 41 - Framebuffer size: 640 x 480
+2014-09-23 21:53:24,095 - [sysloger] - DEBUG - render.py - 49 - Ready for update
+2014-09-23 21:53:28,482 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawSpeed
+2014-09-23 21:53:38,477 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawBoost
+2014-09-23 21:53:44,301 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawThrottle
+2014-09-23 21:53:46,909 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawMAF
+2014-09-23 21:53:50,057 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawTemp
+2014-09-23 21:53:58,047 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawSpeed
+2014-09-23 21:53:58,837 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawBoost
+2014-09-23 21:54:01,808 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawThrottle
+2014-09-23 21:54:04,625 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawMAF
+2014-09-23 21:54:07,053 - [sysloger] - DEBUG - dash - 46 - Loading mode: drawTemp
