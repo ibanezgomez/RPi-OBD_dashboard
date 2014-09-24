@@ -13,7 +13,7 @@ def updateOpt(nOpt):
     else: return 0
 
 current_option = 1
-show_logo      = True
+show_logo      = False
 
 # Pygame manager
 manager=Manager()

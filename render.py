@@ -17,6 +17,8 @@ class RenderPygame:
         disp_no = os.getenv("DISPLAY")
         self.skin=skin
         self.pygame=pygame
+        self.w=640
+        self.h=480
 
         if disp_no:
             log.debug("I'm running under X display = {0}".format(disp_no))
@@ -108,17 +110,16 @@ class RenderPygame:
             time.sleep(0.1)
             y=y-20
 
-    def drawBar(self, percent=20):
-        color=(148, 255, 53)
-        y1 = self.screen.get_height()*0.6
-        y2 = y1 +20
-        max_width=500-40
+    def drawBar(self, size=480, pos=(100,480), percent=20, color=(148, 255, 53), ncolor=(246, 2, 27)):
+        #ancho = self.screen.get_height()*0.6
+        x=pos[0]
+        y=pos[1]*0.6
+        c=color
         if percent>0:
-            if percent>80: color=(246, 2, 27)
-            marco=self.pygame.draw.rect(self.screen, color, (100,y1,max_width,              50), 2 )
-            progr=self.pygame.draw.rect(self.screen, color, (100,y1,(percent*max_width)/100,50), 0)
+            if percent>80: c=ncolor
+            marco    = self.pygame.draw.rect(self.screen, c, (x,y,size,              size/9), 2)
+            progreso = self.pygame.draw.rect(self.screen, c, (x,y,(percent*size)/100,size/9), 0)
         else:
-            color=(246, 2, 27)
             font = self.pygame.font.Font(self.skin['font'], 90)
-            vacum =font.render("VACUM", True, color)
-            self.screen.blit(vacum, (240,260))
+            vacum =font.render("VACUM", True, ncolor)
+            self.screen.blit(vacum, (self.h/2,y))
