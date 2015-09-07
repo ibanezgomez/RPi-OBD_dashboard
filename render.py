@@ -17,37 +17,20 @@ class RenderPygame:
         disp_no = os.getenv("DISPLAY")
         self.skin=skin
         self.pygame=pygame
-        self.w=640
-        self.h=480
+        self.w=480
+        self.h=320
 
-        if disp_no:
-            log.debug("I'm running under X display = {0}".format(disp_no))
-        drivers = ['fbcon', 'directfb', 'svgalib']
-        found = False
-        for driver in drivers:
-            if not os.getenv('SDL_VIDEODRIVER'):
-                os.putenv('SDL_VIDEODRIVER', driver)
-            try:
-                self.pygame.display.init()
-            except self.pygame.error:
-                log.error('Driver: {0} failed.'.format(driver))
-                continue
-            found = True
-            break
-
-        if not found:
-            raise Exception('No suitable video driver found!')
-         
-        #size = (self.pygame.display.Info().current_w, self.pygame.display.Info().current_h)
-        size = [640, 480]
+        os.putenv('SDL_FBDEV', '/dev/fb1')
+        os.putenv('SDL_MOUSEDRV', 'TSLIB')
+        os.putenv('SDL_MOUSEDEV', '/dev/input/touchscreen')
+        self.pygame.display.init()
+        self.pygame.mouse.set_visible(True)
+        size = [self.w, self.h]
         log.debug("Framebuffer size: %d x %d" % (size[0], size[1]))
-        for event in self.pygame.event.get():
-            if event.type == self.pygame.QUIT: sys.exit()
+
+ 
         
         self.screen = self.pygame.display.set_mode(size, self.pygame.FULLSCREEN)
-
-        for event in self.pygame.event.get():
-            if event.type == self.pygame.QUIT: sys.exit()
         log.debug("Ready for update")
         
         self.screen.fill((0, 0, 0))        
@@ -64,6 +47,11 @@ class RenderPygame:
         myfont = self.pygame.font.Font(self.skin['font'], size)
         spdText = myfont.render(value, 1, self.skin['fontC'])
         self.screen.blit(spdText, pos)
+
+    def touchDetect(self):
+        for event in self.pygame.event.get():
+            return self.pygame.mouse.get_pos()
+        return False        
 
     def drawIMG(self, img, pos):
         logo = self.pygame.image.load(img)
@@ -123,3 +111,7 @@ class RenderPygame:
             font = self.pygame.font.Font(self.skin['font'], 90)
             vacum =font.render("VACUM", True, ncolor)
             self.screen.blit(vacum, (self.h/2,y))
+
+    def drawLine(self, color=(148, 255, 53), start_pos=(0,0), end_pos=(0,10), size=5):
+        self.pygame.draw.line(self.screen, color, start_pos, end_pos, size)
+

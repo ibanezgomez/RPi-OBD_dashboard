@@ -27,8 +27,8 @@ while True:
     m=manager.modes[current_option]
     manager.refreshData(current_option)
     log.debug("Loading mode: "+m['name'].__name__)
-    while(not manager.switch.change):
+    while(not manager.change):
         manager.loadMode(m['name'])
-    manager.switch.change=False
+    manager.change=False
     current_option=updateOpt(len(manager.modes)-2)
     manager.refreshData(current_option)

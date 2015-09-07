@@ -30,16 +30,13 @@ class Manager:
             1: {'name': 'oemNight', 'font': 'fonts/digital7.ttf', 'fontC': (36,44,43), 'backC': (28,70,156)}
         }
 
-
-
         # OBD
         self.obd = OBD_Capture(threads=True)
         
         # PYGAME
         self.render = RenderPygame(self.skins[0])
 
-        #GPIO switch
-        self.switch = switch(threads=True)
+        self.change = False
 
     def refreshData(self, opt):
         self.obd.change_sensors(self.modes[opt]['sensors'])
@@ -49,6 +46,7 @@ class Manager:
         return True
 
     def loadMode(self, fMode):
+        if self.render.touchDetect(): self.change = True;
         h=int(time.strftime("%H"))
         if h>19 or h<7: self.changeSkin(self.skins[1]) 
         else: self.changeSkin(self.skins[0])
@@ -71,13 +69,15 @@ class Manager:
     def drawSpeed(self):  
         # Speed
         spd=self.obd.lastRead[0]
-        self.render.draw(320, (95,40), "{:03d}".format(spd['value']))
-        self.render.draw(60, (525,220), spd['unit'])
+        self.render.draw(180, (100,0), "{:03d}".format(spd['value']))     
+        self.render.draw(50, (370,10), spd['unit'])
+
+        self.render.drawLine(self.render.skin['fontC'], (0,160), (480,160), 5)
 
         # RPM
         rpm=self.obd.lastRead[1]
-        self.render.draw(140, (190,350), "{:04d}".format(rpm['value']))
-        self.render.draw(50, (450,410), rpm['unit'])
+        self.render.draw(180, (20,170), "{:04d}".format(rpm['value']))
+        self.render.draw(50, (370,180), rpm['unit'])
 
     def drawIntakeManifold(self):
         # Boost
