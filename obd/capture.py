@@ -29,7 +29,7 @@ class OBD_Capture():
         portnames = scanSerialTest()
         print portnames
         if len(portnames) == 0: return
-        self.port = io.OBDPort("/dev/pts/2", None, 2, 2)
+        self.port = io.OBDPort("/dev/pts/3", None, 2, 2)
         if(self.port.State == 0):
             self.port.close()
             self.port = None

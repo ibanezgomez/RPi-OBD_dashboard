@@ -1,19 +1,10 @@
-2015-09-07 16:29:57,079 - [sysloger] - DEBUG - render.py - 29 - Framebuffer size: 480 x 320
-2015-09-07 16:30:05,974 - [sysloger] - DEBUG - render.py - 34 - Ready for update
-2015-09-07 16:30:06,578 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawSpeed
-2015-09-07 16:30:07,447 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawIntakeManifold
-2015-09-07 16:30:08,472 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawThrottle
-2015-09-07 16:30:09,251 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawMAF
-2015-09-07 16:30:14,645 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawTemp
-2015-09-07 16:30:16,852 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawSpeed
-2015-09-07 16:30:28,279 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawIntakeManifold
-2015-09-07 16:30:29,163 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawThrottle
-2015-09-07 16:30:31,418 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawMAF
-2015-09-07 16:30:32,801 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawTemp
-2015-09-07 16:30:34,263 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawSpeed
-2015-09-07 16:30:37,380 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawIntakeManifold
-2015-09-07 16:30:38,361 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawThrottle
-2015-09-07 16:31:55,720 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawMAF
-2015-09-07 16:32:23,300 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawTemp
-2015-09-07 16:34:25,443 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawSpeed
-2015-09-07 16:34:31,179 - [sysloger] - DEBUG - dash - 34 - Loading mode: drawIntakeManifold
+2015-09-11 11:57:18,834 - [sysloger] - DEBUG - render.py - 29 - Framebuffer size: 480 x 320
+2015-09-11 11:57:20,806 - [sysloger] - DEBUG - render.py - 34 - Ready for update
+2015-09-11 11:57:21,050 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawMAF
+2015-09-11 11:57:24,191 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawTemp
+2015-09-11 11:57:39,585 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawSpeed
+2015-09-11 11:57:42,420 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawIntakeManifold
+2015-09-11 11:57:46,639 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawThrottle
+2015-09-11 11:57:47,531 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawMAF
+2015-09-11 12:08:16,059 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawTemp
+2015-09-11 12:08:16,569 - [sysloger] - DEBUG - dash - 29 - Loading mode: drawSpeed

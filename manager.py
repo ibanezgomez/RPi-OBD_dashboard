@@ -82,50 +82,53 @@ class Manager:
     def drawIntakeManifold(self):
         # Boost
         intake=self.obd.lastRead[0]
-        self.render.draw(250, (100,50), "{:01.2f}".format(float(intake['value'])))
-        self.render.draw(60, (550,190), intake['unit'])  
-        self.render.draw(70, (75,350), intake['name'].split()[0]+" "+intake['name'].split()[1])
-        self.render.draw(70, (190,410), intake['name'].split()[2])
-        self.render.drawBar(480, (75, 480), percent(intake['value'],8))
+        self.render.draw(180, (70,80), "{:01.2f}".format(float(intake['value'])))
+        self.render.draw(50, (400,175), intake['unit'])  
+        self.render.draw(65, (15,0), intake['name'].split()[0]+" "+intake['name'].split()[1])
+        # self.render.draw(70, (100,50), intake['name'].split()[2])
+        self.render.drawBar(300, (90, 440), percent(intake['value'],8))
       
 
     def drawThrottle(self):
         # Throttle
         throttle=self.obd.lastRead[0]
-        self.render.draw(100, (365,50), "{:03.1f}".format(throttle['value']))
-        
-        self.render.drawBar(580, (30,260), throttle['value'])
-        self.render.draw(50, (10,60), throttle['name'])
+        self.render.draw(100, (160,40), "{:03.1f}".format(throttle['value']))
+        self.render.draw(60, (360, 60), throttle["unit"])
+        self.render.drawBar(200, (150,210), throttle['value'])
+        self.render.draw(40, (0,0), throttle['name'])
+
+        self.render.drawLine(self.render.skin['fontC'], (0,160), (480,160), 5)
 
         # Timing Advance
         timming=self.obd.lastRead[1]
-        self.render.draw(100, (365,280), "{:02.1f}".format(abs(timming["value"])))
-        self.render.draw(60, (555, 310), timming["unit"])
-        self.render.draw(50, (10,290), timming["name"])
-        self.render.drawBar(580, (30,650), percent(timming['value'], 65))
+        self.render.draw(100, (150,200), "{:02.1f}".format(abs(timming["value"])))
+        self.render.draw(60, (340, 225), timming["unit"])
+        self.render.draw(40, (0,165), timming["name"])
+        self.render.drawBar(200, (150,480), percent(timming['value'], 65))
 
 
     def drawMAF(self):
         # MAF
         maf=self.obd.lastRead[0]
-        self.render.draw(180, (20,40), "{:07d}".format(maf["value"]))
-        self.render.draw(60, (505, 190), maf["unit"]) 
-        self.render.draw(70, (15,380), maf["name"])
-        self.render.drawBar(480, (75,480), percent(maf['value'],2340515))
+        self.render.draw(120, (40,80), "{:07d}".format(maf["value"]))
+        self.render.draw(50, (220, 185), maf["unit"]) 
+        self.render.draw(55, (0,0), maf["name"])
+        self.render.drawBar(380, (50,400), percent(maf['value'],2340515))
 
     def drawTemp(self):
         # Coolant temperature
         temp_cool=self.obd.lastRead[0]
-        self.render.draw(200, (50,20), "{:02d}".format(temp_cool["value"]))
-        self.render.draw(60, (320,120), temp_cool["unit"])
-        self.render.draw(60, (20,190), temp_cool["name"])
+        self.render.draw(130, (140,45), "{:02d}".format(temp_cool["value"]))
+        self.render.draw(60, (320,90), temp_cool["unit"])
+        self.render.draw(60, (0,0), temp_cool["name"])
+
+        self.render.drawLine(self.render.skin['fontC'], (0,160), (480,160), 5)
 
         # Intake air temperature
         temp_intake=self.obd.lastRead[1]
-        self.render.draw(200, (320,250), "{:02d}".format(temp_intake["value"]))
-        self.render.draw(60, (590,350), temp_intake["unit"])
-        self.render.draw(60, (210,420), temp_intake["name"])
-
+        self.render.draw(130, (140,210), "{:02d}".format(temp_intake["value"]))
+        self.render.draw(60, (320,260), temp_intake["unit"])
+        self.render.draw(60, (0,165), temp_intake["name"])
 
 def percent(n, max):
     return (n*100)/max
